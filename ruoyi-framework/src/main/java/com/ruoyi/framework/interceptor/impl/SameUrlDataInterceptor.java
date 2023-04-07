@@ -24,6 +24,11 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
 
     public final String SESSION_REPEAT_KEY = "repeatData";
 
+
+
+    /**
+     * 重复提交拦截器
+     */
     @SuppressWarnings("unchecked")
     @Override
     public boolean isRepeatSubmit(HttpServletRequest request, RepeatSubmit annotation) throws Exception
@@ -36,7 +41,7 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
 
         // 请求地址（作为存放session的key值）
         String url = request.getRequestURI();
-
+        // HttpSession中的 repeatData值，这个repeatData的值是我们自己存在HttpSession中的
         HttpSession session = request.getSession();
         Object sessionObj = session.getAttribute(SESSION_REPEAT_KEY);
         if (sessionObj != null)
